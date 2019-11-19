@@ -394,6 +394,7 @@ public class Pix extends AppCompatActivity implements View.OnTouchListener {
         ResourcesCompat.getColor(getResources(), R.color.colorPrimaryPix, getTheme());
     cameraView = findViewById(R.id.camera_view);
     focusView = findViewById(R.id.focusView);
+
     try {
       fotoapparat = Fotoapparat
           .with(this)
@@ -487,12 +488,33 @@ public class Pix extends AppCompatActivity implements View.OnTouchListener {
     }
     DrawableCompat.setTint(selection_back.getDrawable(), colorPrimaryDark);
     updateImages();
+
+   /* if(!options.isEnableCamera()){
+      mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+      mBottomSheetBehavior.setPeekHeight((int) (Utility.convertDpToPixel(194, this)));
+    }*/
+   /* if(options.isEnableCamera()){
+      cameraView.setVisibility(View.VISIBLE);
+      focusView.setVisibility(View.VISIBLE);
+      bottomButtons.setVisibility(View.VISIBLE);
+    }else{
+      cameraView.setVisibility(View.GONE);
+      focusView.setVisibility(View.GONE);
+      bottomButtons.setVisibility(View.GONE);
+    }*/
+
   }
 
   private void onClickMethods() {
     findViewById(R.id.clickme).setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
+        if(!options.isEnableCamera()){
+
+          //Toast.makeText(Pix.this,"Capturing not available, please select from gallery",Toast.LENGTH_SHORT).show();
+          Toast.makeText(Pix.this,options.getMessageForCameraDisable(),Toast.LENGTH_SHORT).show();
+          return;
+        }
         if (selectionList.size() >= options.getCount()) {
           Toast.makeText(Pix.this,
               String.format(getResources().getString(R.string.cannot_click_image_pix),
@@ -551,6 +573,9 @@ public class Pix extends AppCompatActivity implements View.OnTouchListener {
     selection_back.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
+        /*if(!options.isEnableCamera()){
+          finish();
+        }*/
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
       }
     });
