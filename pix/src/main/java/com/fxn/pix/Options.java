@@ -11,6 +11,7 @@ public class Options implements Serializable {
     private int count = 1;
     private int requestCode = 0;
     private String path = "/DCIM/Camera";
+    private String messageForCameraDisable="";
     private int imageQuality = 40;
     private int height = 0, width = 0;
     private boolean frontfacing = false;
@@ -97,6 +98,15 @@ public class Options implements Serializable {
     public Options setEnableCamera(boolean enableCamera) {
         this.enableCamera = enableCamera;
         return this;
+    }
+
+    public String getMessageForCameraDisable() {
+        return this.messageForCameraDisable;
+    }
+
+    public Options setMessageForCameraDisable(String messageForCameraDisable) {
+        this.messageForCameraDisable = messageForCameraDisable;
+        return  this;
     }
 
     public Options setFrontfacing(boolean frontfacing) {
