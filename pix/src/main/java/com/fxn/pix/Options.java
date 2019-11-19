@@ -14,6 +14,7 @@ public class Options implements Serializable {
     private int imageQuality = 40;
     private int height = 0, width = 0;
     private boolean frontfacing = false;
+    private boolean enableCamera=true;
     public static final int SCREEN_ORIENTATION_UNSET = -2;
     public static final int SCREEN_ORIENTATION_UNSPECIFIED = -1;
     public static final int SCREEN_ORIENTATION_LANDSCAPE = 0;
@@ -87,6 +88,15 @@ public class Options implements Serializable {
 
     public boolean isFrontfacing() {
         return this.frontfacing;
+    }
+
+    public boolean isEnableCamera() {
+        return this.enableCamera;
+    }
+
+    public Options setEnableCamera(boolean enableCamera) {
+        this.enableCamera = enableCamera;
+        return this;
     }
 
     public Options setFrontfacing(boolean frontfacing) {
